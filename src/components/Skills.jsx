@@ -54,11 +54,6 @@ const skills = [
   { name: "AutoCAD", icon: <SiAutocad size="3em" />, color: "#DA291C" },
 ];
 
-const cardVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-};
-
 const Skills = () => {
   const theme = useTheme();
 
@@ -66,23 +61,39 @@ const Skills = () => {
     <Paper
       component={motion.section}
       elevation={0}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       sx={{ p: 4, my: 4, background: "transparent", border: "none" }}
     >
-      <Typography variant="h2" component="h2" gutterBottom align="center">
-        Technical Skills
-      </Typography>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.7 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+      >
+        <Typography variant="h2" component="h2" gutterBottom align="center">
+          Technical Skills
+        </Typography>
+      </motion.div>
       <Grid
         container
         spacing={{ xs: 2, sm: 4 }}
         justifyContent="center"
         sx={{ mt: 2 }}
       >
-        {skills.map((skill) => (
+        {skills.map((skill, idx) => (
           <Grid item key={skill.name} xs={6} sm={4} md={2}>
             <Tooltip title={skill.name} placement="top">
               <motion.div
-                variants={cardVariants}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.5 }}
+                transition={{ duration: 0.5, delay: idx * 0.07 + 0.2 }}
                 whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.97 }}
+                style={{ width: "100%" }}
               >
                 <Paper
                   elevation={4}

@@ -12,6 +12,7 @@ import { MdDownload } from "react-icons/md";
 import { LuMessageSquareText } from "react-icons/lu";
 import profileImage from "../assets/profile.png";
 import resumePdf from "../assets/Resume(1).pdf";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   const theme = useTheme();
@@ -26,6 +27,11 @@ const Hero = () => {
 
   return (
     <Box
+      component={motion.div}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.3 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
       sx={{
         minHeight: "100vh",
         width: "100%",
@@ -46,7 +52,7 @@ const Hero = () => {
           display: { xs: "flex", md: "none" },
           justifyContent: "center",
           alignItems: "center",
-          mb: { xs: 0.5, sm: 1 },
+          mb: { xs: 0.1, sm: 0.5 },
         }}
       >
         <Box
@@ -86,7 +92,7 @@ const Hero = () => {
           alignItems: { xs: "center", md: "flex-start" },
           textAlign: { xs: "center", md: "left" },
           zIndex: 2,
-          mb: { xs: 3, md: 0 },
+          mb: { xs: 2, md: 0 },
         }}
       >
         <Typography
@@ -147,72 +153,76 @@ const Hero = () => {
             alignItems: "center",
           }}
         >
-          <Button
-            variant="contained"
-            color="primary"
-            href={resumePdf}
-            download
-            endIcon={
-              <MdDownload size={22} style={{ verticalAlign: "middle" }} />
-            }
-            sx={{
-              fontWeight: 700,
-              borderRadius: 6,
-              px: 2,
-              py: 1,
-              fontSize: { xs: 15, sm: 16 },
-              minWidth: 150,
-              minHeight: 44,
-              boxShadow: "0 2px 12px 0 rgba(0,0,0,0.10)",
-              justifyContent: "center",
-              background: theme.palette.primary.main,
-              color: theme.palette.primary.contrastText,
-              textAlign: "center",
-              alignItems: "center",
-              whiteSpace: "nowrap",
-              width: { xs: "100%", sm: "100%", md: "auto" },
-              "&:hover": {
-                background: theme.palette.primary.dark,
-                color: theme.palette.primary.contrastText,
-              },
-            }}
-          >
-            Download Resume
-          </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={handleContactClick}
-            endIcon={
-              <LuMessageSquareText
-                size={22}
-                style={{ verticalAlign: "middle" }}
-              />
-            }
-            sx={{
-              fontWeight: 700,
-              borderRadius: 6,
-              px: 2,
-              py: 1,
-              fontSize: { xs: 15, sm: 16 },
-              minWidth: 150,
-              minHeight: 44,
-              background: theme.palette.background.default,
-              color: theme.palette.primary.main,
-              border: `2px solid ${theme.palette.primary.main}`,
-              textAlign: "center",
-              alignItems: "center",
-              whiteSpace: "nowrap",
-              width: { xs: "100%", sm: "100%", md: "auto" },
-              "&:hover": {
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+            <Button
+              variant="contained"
+              color="primary"
+              href={resumePdf}
+              download
+              endIcon={
+                <MdDownload size={22} style={{ verticalAlign: "middle" }} />
+              }
+              sx={{
+                fontWeight: 700,
+                borderRadius: 6,
+                px: 2,
+                py: 1,
+                fontSize: { xs: 15, sm: 16 },
+                minWidth: 150,
+                minHeight: 44,
+                boxShadow: "0 2px 12px 0 rgba(0,0,0,0.10)",
+                justifyContent: "center",
                 background: theme.palette.primary.main,
                 color: theme.palette.primary.contrastText,
+                textAlign: "center",
+                alignItems: "center",
+                whiteSpace: "nowrap",
+                width: { xs: "100%", sm: "100%", md: "auto" },
+                "&:hover": {
+                  background: theme.palette.primary.dark,
+                  color: theme.palette.primary.contrastText,
+                },
+              }}
+            >
+              Download Resume
+            </Button>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={handleContactClick}
+              endIcon={
+                <LuMessageSquareText
+                  size={22}
+                  style={{ verticalAlign: "middle" }}
+                />
+              }
+              sx={{
+                fontWeight: 700,
+                borderRadius: 6,
+                px: 2,
+                py: 1,
+                fontSize: { xs: 15, sm: 16 },
+                minWidth: 150,
+                minHeight: 44,
+                background: theme.palette.background.default,
+                color: theme.palette.primary.main,
                 border: `2px solid ${theme.palette.primary.main}`,
-              },
-            }}
-          >
-            Contact Me
-          </Button>
+                textAlign: "center",
+                alignItems: "center",
+                whiteSpace: "nowrap",
+                width: { xs: "100%", sm: "100%", md: "auto" },
+                "&:hover": {
+                  background: theme.palette.primary.main,
+                  color: theme.palette.primary.contrastText,
+                  border: `2px solid ${theme.palette.primary.main}`,
+                },
+              }}
+            >
+              Contact Me
+            </Button>
+          </motion.div>
         </Stack>
         <Stack
           direction="row"
@@ -223,64 +233,74 @@ const Hero = () => {
             width: { xs: "100%", md: "auto" },
           }}
         >
-          <IconButton
-            component="a"
-            href="https://github.com/Subhapreet21"
-            target="_blank"
-            aria-label="github"
-            sx={{
-              color:
-                theme.palette.mode === "dark"
-                  ? "#181717"
-                  : theme.palette.text.primary,
-              background: theme.palette.mode === "dark" ? "#fff" : "#fff",
-              border:
-                theme.palette.mode === "dark"
-                  ? "2px solid #222"
-                  : "2px solid #e5e7eb",
-              borderRadius: "50%",
-              boxShadow: "0 2px 8px 0 rgba(0,0,0,0.10)",
-              width: 56,
-              height: 56,
-              transition: "background 0.2s, color 0.2s, border 0.2s",
-              "&:hover": {
-                background: theme.palette.primary.main,
-                color: theme.palette.primary.contrastText,
-                border: `2px solid ${theme.palette.primary.main}`,
-              },
-            }}
+          <motion.div
+            whileHover={{ scale: 1.1, rotate: -6 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <GitHub fontSize="large" />
-          </IconButton>
-          <IconButton
-            component="a"
-            href="https://www.linkedin.com/in/subhapreet-patro-444a02277"
-            target="_blank"
-            aria-label="linkedin"
-            sx={{
-              color:
-                theme.palette.mode === "dark"
-                  ? "#0A66C2"
-                  : theme.palette.text.primary,
-              background: theme.palette.mode === "dark" ? "#fff" : "#fff",
-              border:
-                theme.palette.mode === "dark"
-                  ? "2px solid #222"
-                  : "2px solid #e5e7eb",
-              borderRadius: "50%",
-              boxShadow: "0 2px 8px 0 rgba(0,0,0,0.10)",
-              width: 56,
-              height: 56,
-              transition: "background 0.2s, color 0.2s, border 0.2s",
-              "&:hover": {
-                background: theme.palette.primary.main,
-                color: theme.palette.primary.contrastText,
-                border: `2px solid ${theme.palette.primary.main}`,
-              },
-            }}
+            <IconButton
+              component="a"
+              href="https://github.com/Subhapreet21"
+              target="_blank"
+              aria-label="github"
+              sx={{
+                color:
+                  theme.palette.mode === "dark"
+                    ? "#181717"
+                    : theme.palette.text.primary,
+                background: theme.palette.mode === "dark" ? "#fff" : "#fff",
+                border:
+                  theme.palette.mode === "dark"
+                    ? "2px solid #222"
+                    : "2px solid #e5e7eb",
+                borderRadius: "50%",
+                boxShadow: "0 2px 8px 0 rgba(0,0,0,0.10)",
+                width: 56,
+                height: 56,
+                transition: "background 0.2s, color 0.2s, border 0.2s",
+                "&:hover": {
+                  background: theme.palette.primary.main,
+                  color: theme.palette.primary.contrastText,
+                  border: `2px solid ${theme.palette.primary.main}`,
+                },
+              }}
+            >
+              <GitHub fontSize="large" />
+            </IconButton>
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.1, rotate: -6 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <LinkedIn fontSize="large" />
-          </IconButton>
+            <IconButton
+              component="a"
+              href="https://www.linkedin.com/in/subhapreet-patro-444a02277"
+              target="_blank"
+              aria-label="linkedin"
+              sx={{
+                color:
+                  theme.palette.mode === "dark"
+                    ? "#0A66C2"
+                    : theme.palette.text.primary,
+                background: theme.palette.mode === "dark" ? "#fff" : "#fff",
+                border:
+                  theme.palette.mode === "dark"
+                    ? "2px solid #222"
+                    : "2px solid #e5e7eb",
+                borderRadius: "50%",
+                boxShadow: "0 2px 8px 0 rgba(0,0,0,0.10)",
+                width: 56,
+                height: 56,
+                transition: "background 0.2s, color 0.2s, border 0.2s",
+                "&:hover": {
+                  background: theme.palette.primary.main,
+                  color: theme.palette.primary.contrastText,
+                  border: `2px solid ${theme.palette.primary.main}`,
+                },
+              }}
+            >
+              <LinkedIn fontSize="large" />
+            </IconButton>
+          </motion.div>
         </Stack>
       </Box>
       {/* Right: Image for desktop */}
@@ -294,6 +314,10 @@ const Hero = () => {
         }}
       >
         <Box
+          component={motion.div}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
           sx={{
             width: { md: 320, lg: 380 },
             height: { md: 320, lg: 380 },
