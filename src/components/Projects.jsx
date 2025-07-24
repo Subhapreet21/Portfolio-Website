@@ -15,7 +15,7 @@ import {
 import Carousel from "./Carousel";
 import adminDashboardImg from "../assets/projects/Admin_Dashboard.png";
 import cropAdvisorImg from "../assets/projects/Crop_Advisor.png";
-import heartDiseaseImg from "../assets/projects/Heart_Disease_Prediction.png";
+import heartDiseaseImg from "../assets/projects/Heart_Disease_Prediction2.png";
 import studentManagementImg from "../assets/projects/Student_Mangement_System.png";
 import aiChatbotImg from "../assets/projects/AI_Chatbot.png";
 import cargoTrackingImg from "../assets/projects/Cargo_Scanner.png";
