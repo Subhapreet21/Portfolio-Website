@@ -10,7 +10,7 @@ import {
 import { GitHub, LinkedIn } from "@mui/icons-material";
 import { MdDownload } from "react-icons/md";
 import { LuMessageSquareText } from "react-icons/lu";
-import profileImage from "../assets/profile.png";
+import profileImage from "../assets/Profile_picture.png";
 import resumePdf from "../assets/Resume(2).pdf";
 import { motion } from "framer-motion";
 
