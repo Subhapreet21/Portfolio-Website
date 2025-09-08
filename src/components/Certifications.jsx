@@ -23,6 +23,8 @@ import foundationsDataImg from "../assets/certificates/Foundations of data analy
 import deepLearningImg from "../assets/certificates/Deep Learning.jpg";
 import deloitteImg from "../assets/certificates/Deloitte Australia - Data Analytics Job Simulation.jpg";
 import accentureImg from "../assets/certificates/Accenture Nordics - Software Engineering Job Simulation.jpg";
+import githubFoundations from "../assets/certificates/Github_Foundations_Part1of2.png";
+import githubFundamentals from "../assets/certificates/GitHub fundamentals-Administration_basics_and_product_features_Part1of2.png";
 
 // Certificate PDFs
 import spokenEnglishPdf from "../assets/certificates/Spoken English.pdf";
@@ -36,6 +38,8 @@ import foundationsDataPdf from "../assets/certificates/Foundations of data analy
 import deepLearningPdf from "../assets/certificates/Deep Learning.pdf";
 import deloittePdf from "../assets/certificates/Deloitte Australia - Data Analytics Job Simulation.pdf";
 import accenturePdf from "../assets/certificates/Accenture Nordics - Software Engineering Job Simulation.pdf";
+import githubFoundationsPdf from "../assets/certificates/GitHub Foundations Part 1 of 2.pdf";
+import githubFundamentalsPdf from "../assets/certificates/GitHub fundamentals - Administration basics and product features Part 1 of 2.pdf";
 
 const certifications = [
   {
@@ -114,6 +118,21 @@ const certifications = [
     issue_date: "April 2024",
     image: smartEnglishImg,
     file: smartEnglishPdf,
+  },
+  {
+    title: "GitHub Foundations Part 1 of 2",
+    organization: "Microsoft",
+    issue_date: "August 2025",
+    image: githubFoundations,
+    file: githubFoundationsPdf,
+  },
+  {
+    title:
+      "GitHub fundamentals - Administration basics and product features Part 1 of 2",
+    organization: "Microsoft",
+    issue_date: "August 2025",
+    image: githubFundamentals,
+    file: githubFundamentalsPdf,
   },
 ];
 

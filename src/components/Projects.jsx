@@ -19,6 +19,7 @@ import heartDiseaseImg from "../assets/projects/Heart_Disease_Prediction2.png";
 import studentManagementImg from "../assets/projects/Student_Mangement_System.png";
 import aiChatbotImg from "../assets/projects/AI_Chatbot.png";
 import cargoTrackingImg from "../assets/projects/Cargo_Scanner.png";
+import lmsConversoImg from "../assets/projects/LMS_Converso.png";
 import { FaGithub } from "react-icons/fa";
 import { motion } from "framer-motion";
 
@@ -70,6 +71,14 @@ const projectsData = [
       "Designed a web app for efficient product management and analysis in cargo and inventory systems. It features secure authentication, product registration, and QR code generation, built with React, Node.js/Express, and MongoDB Atlas.",
     image: cargoTrackingImg,
     link: "https://github.com/Subhapreet21/Cargo-Scanner",
+  },
+  {
+    id: 7,
+    title: "AI-Powered Learning Platform",
+    description:
+      "Built an AI-driven learning platform with subject-specific companions, real-time voice interactions, secure authentication, and subscription-aware limits—delivering personalized study assistance, smart discovery, and clear progress tracking.",
+    image: lmsConversoImg,
+    link: "https://github.com/Subhapreet21/LMS-SaaS-App",
   },
 ];
 
