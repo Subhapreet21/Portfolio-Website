@@ -20,6 +20,7 @@ import studentManagementImg from "../assets/projects/Student_Mangement_System.pn
 import aiChatbotImg from "../assets/projects/AI_Chatbot.png";
 import cargoTrackingImg from "../assets/projects/Cargo_Scanner.png";
 import lmsConversoImg from "../assets/projects/LMS_Converso.png";
+import voice2textImg from "../assets/projects/Lecture_Voice_to_Notes_Generator.png";
 import { FaGithub } from "react-icons/fa";
 import { motion } from "framer-motion";
 
@@ -79,6 +80,14 @@ const projectsData = [
       "Built an AI-driven learning platform with subject-specific companions, real-time voice interactions, secure authentication, and subscription-aware limits—delivering personalized study assistance, smart discovery, and clear progress tracking.",
     image: lmsConversoImg,
     link: "https://github.com/Subhapreet21/LMS-SaaS-App",
+  },
+  {
+    id: 8,
+    title: "Lecture Voice-to-Notes Generator",
+    description:
+      "An AI-powered study tool built with Streamlit that transforms audio lectures into accurate transcriptions, concise summaries, and automated Q&A flashcards using OpenAI Whisper and Hugging Face Transformers.",
+    image: voice2textImg,
+    link: "https://github.com/Subhapreet21/Edunet_Voice2Text",
   },
 ];
 
