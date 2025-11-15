@@ -26,6 +26,7 @@ import accentureImg from "../assets/certificates/Accenture Nordics - Software En
 import githubFoundations from "../assets/certificates/Github_Foundations_Part1of2.png";
 import githubFundamentals from "../assets/certificates/GitHub fundamentals-Administration_basics_and_product_features_Part1of2.png";
 import edunetImg from "../assets/certificates/Edunet-Artificial Intelligence.png";
+import edunetInternshipImg from "../assets/certificates/AICTE B4 PD Completion-1040.png";
 // Certificate PDFs
 import spokenEnglishPdf from "../assets/certificates/Spoken English.pdf";
 import smartEnglishPdf from "../assets/certificates/Smart English Basics for Professionals.pdf";
@@ -41,6 +42,7 @@ import accenturePdf from "../assets/certificates/Accenture Nordics - Software En
 import githubFoundationsPdf from "../assets/certificates/GitHub Foundations Part 1 of 2.pdf";
 import githubFundamentalsPdf from "../assets/certificates/GitHub fundamentals - Administration basics and product features Part 1 of 2.pdf";
 import edunetPdf from "../assets/certificates/Edunet-Artificial Intelligence.pdf";
+import edunetInternshipPdf from "../assets/certificates/AICTE B4 PD Completion-1040.pdf";
 
 const certifications = [
   {
@@ -141,6 +143,13 @@ const certifications = [
     issue_date: "September 2025",
     image: edunetImg,
     file: edunetPdf,
+  },
+  {
+    title: "Edunet-Internship on Artificial Intelligence & Cloud Technology",
+    organization: "Edunet Foundation",
+    issue_date: "November 2025",
+    image: edunetInternshipImg,
+    file: edunetInternshipPdf,
   },
 ];
 
