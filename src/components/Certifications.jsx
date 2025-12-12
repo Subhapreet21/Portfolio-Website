@@ -27,6 +27,7 @@ import githubFoundations from "../assets/certificates/Github_Foundations_Part1of
 import githubFundamentals from "../assets/certificates/GitHub fundamentals-Administration_basics_and_product_features_Part1of2.png";
 import edunetImg from "../assets/certificates/Edunet-Artificial Intelligence.png";
 import edunetInternshipImg from "../assets/certificates/AICTE B4 PD Completion-1040.png";
+import agentforceCertificateImg from "../assets/certificates/Salesforce Certified Agentforce Specialist.jpg";
 // Certificate PDFs
 import spokenEnglishPdf from "../assets/certificates/Spoken English.pdf";
 import smartEnglishPdf from "../assets/certificates/Smart English Basics for Professionals.pdf";
@@ -43,8 +44,16 @@ import githubFoundationsPdf from "../assets/certificates/GitHub Foundations Part
 import githubFundamentalsPdf from "../assets/certificates/GitHub fundamentals - Administration basics and product features Part 1 of 2.pdf";
 import edunetPdf from "../assets/certificates/Edunet-Artificial Intelligence.pdf";
 import edunetInternshipPdf from "../assets/certificates/AICTE B4 PD Completion-1040.pdf";
+import agentforceCertificatePdf from "../assets/certificates/Salesforce Certified Agentforce Specialist.pdf";
 
 const certifications = [
+  {
+    title: "Salesforce Certified Agentforce Specialist",
+    organization: "Salesforce",
+    issue_date: "December 2025",
+    image: agentforceCertificateImg,
+    file: agentforceCertificatePdf,
+  },
   {
     title: "Deloitte Australia - Data Analytics Job Simulation",
     organization: "Forage",
