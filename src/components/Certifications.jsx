@@ -235,10 +235,9 @@ const Certifications = () => {
                   theme.palette.mode === "dark" ? "#232b3b" : "#f8fafc",
                 borderRadius: 8,
                 border: (theme) =>
-                  `1.5px solid ${
-                    theme.palette.mode === "dark"
-                      ? theme.palette.primary.main
-                      : "#e0e7ef"
+                  `1.5px solid ${theme.palette.mode === "dark"
+                    ? theme.palette.primary.main
+                    : "#e0e7ef"
                   }`,
                 gap: { xs: 0, sm: 0 },
               }}
@@ -257,10 +256,9 @@ const Certifications = () => {
                   borderRight: {
                     xs: "none",
                     sm: (theme) =>
-                      `1.5px solid ${
-                        theme.palette.mode === "dark"
-                          ? theme.palette.primary.main
-                          : "#e0e7ef"
+                      `1.5px solid ${theme.palette.mode === "dark"
+                        ? theme.palette.primary.main
+                        : "#e0e7ef"
                       }`,
                   },
                   mb: { xs: 0, sm: 0 },

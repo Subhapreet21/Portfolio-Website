@@ -21,6 +21,8 @@ import aiChatbotImg from "../assets/projects/AI_Chatbot.png";
 import cargoTrackingImg from "../assets/projects/Cargo_Scanner.png";
 import lmsConversoImg from "../assets/projects/LMS_Converso.png";
 import voice2textImg from "../assets/projects/Lecture_Voice_to_Notes_Generator.png";
+import apexAssistant from "../assets/projects/Voice_Assistant.png";
+import currencyConvertor from "../assets/projects/Currency_Convertor.png";
 import { FaGithub } from "react-icons/fa";
 import { motion } from "framer-motion";
 
@@ -88,6 +90,22 @@ const projectsData = [
       "An AI-powered study tool built with Streamlit that transforms audio lectures into accurate transcriptions, concise summaries, and automated Q&A flashcards using OpenAI Whisper and Hugging Face Transformers.",
     image: voice2textImg,
     link: "https://github.com/Subhapreet21/Edunet_Voice2Text",
+  },
+  {
+    id: 9,
+    title: "Apex Assistant",
+    description:
+      "A privacy-first, offline voice assistant built with Java and Vosk that enables secure system control, intelligent app launching, and real-time dashboard monitoring without sending data to the cloud.",
+    image: apexAssistant,
+    link: "https://github.com/Subhapreet21/apex-voice-assistant",
+  },
+  {
+    id: 10,
+    title: "Currency Convertor",
+    description:
+      "A native Android currency converter application built in Java that provides real-time exchange rate conversions with a clean, user-friendly interface.",
+    image: currencyConvertor,
+    link: "https://github.com/Subhapreet21/Currency_Converter-Android-",
   },
 ];
 
@@ -172,10 +190,9 @@ const Projects = () => {
                     background:
                       theme.palette.mode === "dark" ? "#232b3b" : "#f8fafc",
                     border: (theme) =>
-                      `1.5px solid ${
-                        theme.palette.mode === "dark"
-                          ? theme.palette.primary.main
-                          : "#e0e7ef"
+                      `1.5px solid ${theme.palette.mode === "dark"
+                        ? theme.palette.primary.main
+                        : "#e0e7ef"
                       }`,
                     overflow: "hidden",
                   }}
