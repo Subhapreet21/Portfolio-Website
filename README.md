@@ -51,6 +51,7 @@ Here are some of the key projects showcased in this portfolio:
 | **Voice-to-Notes Generator** | AI tool converting lecture audio into notes, summaries, and flashcards. | Streamlit, OpenAI Whisper |
 | **Apex Assistant** | Privacy-first, offline voice assistant for system control and app launching. | Java, Vosk |
 | **Currency Converter** | Native Android app for real-time exchange rate conversions. | Java, Android SDK |
+| **PMASS (Campus Assistant)** | AI-driven campus ecosystem centralizing university services through predictive analytics, dynamic scheduling, and an interactive 3D tour. | Flutter, Node.js, Supabase, Gemini AI |
 
 ---
 

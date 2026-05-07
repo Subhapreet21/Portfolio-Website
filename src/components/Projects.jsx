@@ -23,6 +23,7 @@ import lmsConversoImg from "../assets/projects/LMS_Converso.png";
 import voice2textImg from "../assets/projects/Lecture_Voice_to_Notes_Generator.png";
 import apexAssistant from "../assets/projects/Voice_Assistant.png";
 import currencyConvertor from "../assets/projects/Currency_Convertor.png";
+import campusAssistant from "../assets/projects/Proactive_Multimodal_Academic_Support_System.png";
 import { FaGithub } from "react-icons/fa";
 import { motion } from "framer-motion";
 
@@ -106,6 +107,14 @@ const projectsData = [
       "A native Android currency converter application built in Java that provides real-time exchange rate conversions with a clean, user-friendly interface.",
     image: currencyConvertor,
     link: "https://github.com/Subhapreet21/Currency_Converter-Android-",
+  },
+  {
+    id: 11,
+    title: "Proactive Multimodal Academic Support System",
+    description:
+      "An intelligent, AI-driven campus ecosystem built with Flutter and Node.js that centralizes university services through predictive analytics, dynamic scheduling, and a GenAI-embedded interactive 3D tour.",
+    image: campusAssistant,
+    link: "https://github.com/Subhapreet21/Proactive-Multimodal-Academic-Support-System",
   },
 ];
 
