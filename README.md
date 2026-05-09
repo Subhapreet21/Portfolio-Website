@@ -1,140 +1,193 @@
-# 👨‍💻 Portfolio Website - Subhapreet Patro
+<div align="center">
 
-![Portfolio Banner](https://img.shields.io/badge/Status-Active-success?style=flat-square)
+# Subhapreet Patro — Portfolio Website
 
-Welcome to the personal portfolio website of **Subhapreet Patro**, a passionate **Computer Science Student** and **Full Stack Developer**. This interactive and responsive website serves as a digital showcase of my technical skills, software projects, certifications, and professional journey.
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-subhapreetpatro.vercel.app-00bcd4?style=for-the-badge)](https://subhapreetpatro.vercel.app/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-6.3-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![MUI](https://img.shields.io/badge/Material_UI-v6-007FFF?style=for-the-badge&logo=mui&logoColor=white)](https://mui.com/)
 
-## 🚀 Live Demo
+> A modern, animated, and fully responsive personal portfolio website built with React + Vite and Material UI — featuring a glassmorphic design system, dark/light theming, and a swipeable project carousel.
 
-[**View Live Portfolio**](https://subhapreetpatro.vercel.app/)
-
----
-
-## ✨ Key Features
-
--   **🎨 Modern & Dynamic UI**: Built with **React** and **Material UI (MUI)** for a sleek, professional look.
--   **🌓 Dark/Light Mode**: Fully supported theme switching with persistent state.
--   **📱 Responsive Design**: Optimized layout for Mobiles, Tablets, and Desktops.
--   **⚡ Smooth Animations**: Powered by **Framer Motion** for engaging entrance and hover effects.
--   **📜 Smooth Scrolling**: Integrated **Lenis** for a premium scrolling experience.
--   **📂 Project Showcase**: detailed cards with expandable details and GitHub links.
--   **🏆 Certification Gallery**: A visual grid of professional certifications with PDF previews.
--   **📩 Working Contact Form**: Integrated with **EmailJS** for direct messaging.
+</div>
 
 ---
 
-## 🛠️ Technical Skills
+## ✨ Features
 
-My technical expertise spans across various domains of software development:
+- **🎨 Glassmorphic Design** — Frosted-glass cards and panels with `backdrop-filter: blur` throughout
+- **🌗 Dark / Light Mode** — One-click theme switching via the sidebar/topbar toggle with smooth CSS transitions
+- **📱 Fully Responsive** — Adaptive layouts for mobile (≤600px), tablet (600–900px), and desktop (900px+)
+- **⚡ Framer Motion Animations** — Entrance animations, hover lift effects, and staggered reveals on scroll
+- **🎠 Swipeable Project Carousel** — Drag-to-navigate project showcase with auto-play, dot indicators, and loop support
+- **🏆 Certification Gallery** — Scrollable card list with certificate image previews and one-click PDF access
+- **💼 Timeline Experience Section** — Alternating timeline with company logo, role chips, and skill tags
+- **📩 Working Contact Form** — EmailJS integration for direct in-browser email delivery
+- **🧭 Smooth Scroll Navigation** — Sidebar / topbar nav with `scrollIntoView` for instant section jumps
 
-### **Programming Languages**
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=openjdk&logoColor=white) ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+---
 
-### **Software and Technologies**
-![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black) ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white) ![NodeJS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) ![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white) ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white) ![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white) ![Salesforce](https://img.shields.io/badge/Salesforce-%2300A1E0.svg?style=for-the-badge&logo=salesforce&logoColor=white) ![Arduino](https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white) ![Material UI](https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white) ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white) ![Android Studio](https://img.shields.io/badge/Android%20Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white) ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white) ![AutoCAD](https://img.shields.io/badge/AutoCAD-0696D7?style=for-the-badge&logo=autocad&logoColor=white)
+## 🛠️ Tech Stack
+
+### Core Framework
+![React](https://img.shields.io/badge/React_19-61DAFB?style=flat-square&logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite_6-646CFF?style=flat-square&logo=vite&logoColor=white)
+
+### UI & Styling
+![MUI](https://img.shields.io/badge/Material_UI-007FFF?style=flat-square&logo=mui&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=flat-square&logo=framer&logoColor=white)
+
+### Integrations
+![EmailJS](https://img.shields.io/badge/EmailJS-FF6900?style=flat-square)
+![React Icons](https://img.shields.io/badge/React_Icons-E91E63?style=flat-square)
+
+### Skills Showcased
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![Java](https://img.shields.io/badge/Java-007396?style=flat-square&logo=openjdk&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white)
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white)
+![Arduino](https://img.shields.io/badge/Arduino-00979D?style=flat-square&logo=arduino&logoColor=white)
 
 ---
 
 ## 💻 Featured Projects
 
-Here are some of the key projects showcased in this portfolio:
-
-| Project Name | Description | Tech Stack |
+| Project | Description | Tech Stack |
 | :--- | :--- | :--- |
-| **Admin Dashboard** | A responsive MERN-based admin panel with role-based access and financial visualization charts. | React, Node.js, Mui, Nivo Charts |
-| **Crop Advisor** | ML-powered agriculture assistant for crop recommendation and disease detection. | Python, Streamlit, ML (Random Forest) |
-| **Heart Disease Prediction** | GUI-based medical app using Logistic Regression for heart disease risk analysis. | Python, Tkinter, Matplotlib |
-| **Student Management System** | A GUI-based system for managing student records and performance tracking. | Python, Tkinter, MySQL |
-| **AI Chatbot** | Real-time chat app using Gemini API with voice input support. | React, Gemini API |
-| **Cargo Tracking System** | Web app for cargo/inventory management with QR code generation. | React, Node.js, MongoDB |
-| **LMS SaaS App** | AI-driven learning platform with subject-specific companions and progress tracking. | Next.js, AI Integration |
-| **Voice-to-Notes Generator** | AI tool converting lecture audio into notes, summaries, and flashcards. | Streamlit, OpenAI Whisper |
-| **Apex Assistant** | Privacy-first, offline voice assistant for system control and app launching. | Java, Vosk |
-| **Currency Converter** | Native Android app for real-time exchange rate conversions. | Java, Android SDK |
-| **PMASS (Campus Assistant)** | AI-driven campus ecosystem centralizing university services through predictive analytics, dynamic scheduling, and an interactive 3D tour. | Flutter, Node.js, Supabase, Gemini AI |
+| **🖥️ Admin Dashboard** | Responsive MERN admin panel with role-based access, financial charts (Nivo/Chart.js), and dynamic theming | React, Node.js, MUI, MongoDB |
+| **🌾 Crop Advisor** | ML-powered agriculture assistant for crop recommendation and plant disease detection via image input | Python, Streamlit, Random Forest |
+| **❤️ Heart Disease Prediction** | GUI medical app using Logistic Regression for real-time heart disease risk scoring and visualization | Python, Tkinter, Matplotlib, MySQL |
+| **🎓 Student Management System** | Login-secured student record system with image storage, search, and academic performance charts | Python, Tkinter, MySQL |
+| **🤖 AI Chatbot** | Real-time chat app with Gemini API responses, voice input, and customizable themes | React, Gemini API |
+| **📦 Cargo Tracking System** | Inventory/cargo web app with QR code generation, product registration, and secure auth | React, Node.js, Express, MongoDB |
+| **📚 AI-Powered Learning Platform** | AI-driven LMS SaaS with subject companions, voice interactions, subscription limits, and progress tracking | Next.js, Clerk, Vapi, Gemini AI |
+| **🎙️ Voice-to-Notes Generator** | Converts lecture audio into transcriptions, summaries, and Q&A flashcards | Streamlit, OpenAI Whisper, HuggingFace |
+| **🗣️ Apex Assistant** | Privacy-first offline voice assistant for system control and app launching — no cloud dependency | Java, Vosk |
+| **💱 Currency Converter** | Native Android app for real-time currency conversions with a clean Material UI | Java, Android SDK |
+| **🏫 PMASS — Campus Assistant** | AI-driven campus ecosystem with predictive timetabling, multimodal chat, and an interactive 3D campus tour | Flutter, Node.js, Supabase, Gemini AI |
 
 ---
 
-## 📜 Certifications
+## 📜 Certifications Highlights
 
-I have continuously upskilled myself through various certifications:
-
--   **Salesforce Certified Agentforce Specialist** (Dec 2025)
--   **Deloitte Australia - Data Analytics Job Simulation** (May 2025)
--   **Accenture Nordics - Software Engineering Job Simulation** (May 2025)
--   **AI For Everyone** - DeepLearning.AI (Nov 2023)
--   **Google Data Analytics Foundations** (Jun 2023)
--   **Introduction to Generative AI** - AWS (Jun 2025)
--   **GitHub Foundations & Fundamentals** (Aug 2025)
--   *And many more...*
+- 🏅 **Salesforce Certified Agentforce Specialist** — Salesforce *(Dec 2025)*
+- 📊 **Data Analytics Job Simulation** — Deloitte Australia / Forage *(May 2025)*
+- 💻 **Software Engineering Job Simulation** — Accenture Nordics / Forage *(May 2025)*
+- 🤖 **Introduction to Generative AI** — AWS Training & Certification *(Jun 2025)*
+- 🐙 **GitHub Foundations & Fundamentals** — Microsoft *(Aug 2025)*
+- 🧠 **Edunet AI & Cloud Technology Internship** — IBM SkillsBuild / Edunet Foundation *(Nov 2025)*
+- 📈 **Foundations of Data Analytics** — Google / Coursera *(Jun 2023)*
+- *...and 9 more — all viewable with PDF previews in the Certifications section*
 
 ---
 
-## ⚙️ Installation & Setup
+## ⚙️ Local Development
 
-To run this project locally on your machine:
+### Prerequisites
+- Node.js ≥ 18
+- npm ≥ 9
 
-1.  **Clone the Repository**
-    ```bash
-    git clone https://github.com/Subhapreet21/Portfolio-Website.git
-    cd Portfolio-Website
-    ```
+### Setup
 
-2.  **Install Dependencies**
-    ```bash
-    npm install
-    ```
+```bash
+# 1. Clone the repository
+git clone https://github.com/Subhapreet21/Portfolio-Website.git
+cd Portfolio-Website
 
-3.  **Configure Environment Variables**
-    Create a `.env` file in the root directory:
-    ```env
-    VITE_EMAILJS_SERVICE_ID=your_service_id
-    VITE_EMAILJS_TEMPLATE_ID=your_template_id
-    VITE_EMAILJS_PUBLIC_KEY=your_public_key
-    ```
+# 2. Install dependencies
+npm install
 
-4.  **Run Development Server**
-    ```bash
-    npm run dev
-    ```
+# 3. Configure environment variables
+cp .env.example .env
+```
 
-5.  **Build for Production**
-    ```bash
-    npm run build
-    ```
+Edit `.env` with your EmailJS credentials:
+
+```env
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+```bash
+# 4. Start the development server
+npm run dev
+
+# 5. Build for production
+npm run build
+
+# 6. Preview the production build locally
+npm run preview
+```
 
 ---
 
 ## 📂 Project Structure
 
-```bash
+```
 portfolio/
-├── public/              # Static assets (favicons, manifest)
+├── public/                     # Static assets (favicon, manifest)
 ├── src/
-│   ├── assets/          # Images, PDFs (Certificates, Projects)
-│   ├── components/      # React Components
-│   │   ├── Hero.jsx     # Landing section
-│   │   ├── Skills.jsx   # Skills grid with icons
-│   │   ├── Projects.jsx # Project carousel/grid
-│   │   ├── Certifications.jsx # Certificate cards
-│   │   ├── Contact.jsx  # Contact form
-│   │   └── ...
-│   ├── MainLayout/      # Layout wrappers
-│   ├── App.jsx          # Main App Logic & Theme Setup
-│   └── main.jsx         # Entry Point
-├── package.json         # Dependencies & Scripts
-└── vite.config.js       # Vite Configuration
+│   ├── assets/
+│   │   ├── certificates/       # Certificate images & PDFs
+│   │   ├── projects/           # Project screenshot images
+│   │   └── Company Logos/      # Experience section logos
+│   ├── components/
+│   │   ├── Sidebar.jsx         # Fixed sidebar (desktop) / Topbar (mobile)
+│   │   ├── Hero.jsx            # Landing section with profile & socials
+│   │   ├── Skills.jsx          # Animated tech skill icon grid
+│   │   ├── Experience.jsx      # Timeline-based professional experience
+│   │   ├── Projects.jsx        # Swipeable project carousel
+│   │   ├── Carousel.jsx        # Drag-to-navigate carousel component
+│   │   ├── Certifications.jsx  # Scrollable certification card list
+│   │   ├── Contact.jsx         # EmailJS contact form
+│   │   └── Footer.jsx          # Glassmorphic footer
+│   ├── App.jsx                 # Theme provider, layout, routing
+│   ├── App.css                 # Global scrollbar styles
+│   └── main.jsx                # React entry point
+├── .env                        # Environment variables (not committed)
+├── index.html                  # HTML shell
+├── package.json                # Dependencies & scripts
+└── vite.config.js              # Vite build configuration
 ```
 
 ---
 
-## 🤝 Contact Me
+## 🚀 Deployment
 
-I am always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+This project is deployed on **Vercel**. To deploy your own fork:
 
--   **LinkedIn**: [Subhapreet Patro](https://www.linkedin.com/in/subhapreet-patro-444a02277)
--   **GitHub**: [Subhapreet21](https://github.com/Subhapreet21)
--   **Email**: subhapreetpatro2004@gmail.com
+1. Push your code to GitHub
+2. Import the repository on [vercel.com](https://vercel.com/)
+3. Add your environment variables (`VITE_EMAILJS_*`) in the Vercel dashboard
+4. Vercel will auto-detect the Vite framework and handle the build
 
 ---
-*Built with ❤️ by Subhapreet Patro*
+
+## 🤝 Connect With Me
+
+<div align="center">
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Subhapreet_Patro-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/subhapreet-patro-444a02277)
+[![GitHub](https://img.shields.io/badge/GitHub-Subhapreet21-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Subhapreet21)
+[![Instagram](https://img.shields.io/badge/Instagram-subhapreet__patro-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/subhapreet_patro)
+[![X](https://img.shields.io/badge/X-Subhapreet21-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/Subhapreet21)
+
+📧 **subhapreetpatro2004@gmail.com**
+
+</div>
+
+---
+
+<div align="center">
+
+*Built with ❤️ and a lot of ☕ by **Subhapreet Patro***
+
+⭐ If you found this portfolio inspiring, consider giving the repo a star!
+
+</div>

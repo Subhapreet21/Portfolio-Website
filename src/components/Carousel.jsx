@@ -8,7 +8,9 @@ import {
   Typography,
   Button,
   CardActions,
+  Collapse,
 } from "@mui/material";
+import MonitorIcon from "@mui/icons-material/Monitor";
 import { FaGithub } from "react-icons/fa";
 
 const DRAG_BUFFER = 10;
@@ -46,6 +48,11 @@ export default function Carousel({
   const x = useMotionValue(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
+  const [expanded, setExpanded] = useState({});
+
+  const handleExpand = (id) => {
+    setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
 
   useEffect(() => {
     if (pauseOnHover && containerRef.current) {
@@ -116,9 +123,10 @@ export default function Carousel({
       sx={{
         position: "relative",
         width: "100%",
-        height: `${baseHeight}px`,
+        height: { xs: "auto", md: `${baseHeight}px` },
         overflow: "hidden",
         mx: "auto",
+        pb: { xs: 6, md: 0 },
       }}
     >
       <MotionBox
@@ -146,34 +154,76 @@ export default function Carousel({
             sx={{
               width: `${itemWidth}px`,
               flexShrink: 0,
-              height: { xs: 180, sm: 260, md: "100%" },
+              height: { xs: "auto", md: "100%" },
               display: "flex",
               flexDirection: "column",
               p: { xs: 0.5, sm: 1 },
               boxSizing: "border-box",
+              position: "relative",
+              overflow: "hidden",
             }}
           >
+            <MonitorIcon
+              sx={{
+                position: "absolute",
+                right: -20,
+                top: -20,
+                fontSize: 150,
+                opacity: 0.05,
+                transform: "rotate(-15deg)",
+                zIndex: 0,
+              }}
+            />
             <CardMedia
               component="img"
               sx={{
-                height: { xs: 100, sm: 160, md: "60%" },
+                height: { xs: 160, sm: 200, md: "60%" },
                 width: "100%",
                 objectFit: "contain",
                 p: { xs: 0.5, sm: 1 },
                 background: "#fff",
+                cursor: { xs: "pointer", md: "default" },
               }}
               image={item.image}
               alt={item.title}
+              onClick={() => handleExpand(item.id)}
             />
-            <CardContent sx={{ flexGrow: 1, overflow: "auto", pb: 0 }}>
+            <CardContent 
+              sx={{ flexGrow: 1, overflow: "auto", pb: 0, cursor: { xs: "pointer", md: "default" }, textAlign: "center" }}
+              onClick={() => handleExpand(item.id)}
+            >
               <Typography gutterBottom variant="h5" component="h3">
                 {item.title}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {item.description}
-              </Typography>
+              
+              <Box sx={{ display: { xs: "none", md: "block" } }}>
+                <Typography variant="body2" color="text.secondary">
+                  {item.description}
+                </Typography>
+              </Box>
             </CardContent>
-            <CardActions sx={{ mt: "auto", pt: 0 }}>
+
+            <Collapse in={!!expanded[item.id]} timeout="auto" unmountOnExit sx={{ display: { md: "none" } }}>
+              <CardContent sx={{ pt: 0, textAlign: "center" }}>
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                  {item.description}
+                </Typography>
+                <CardActions sx={{ justifyContent: "center", pb: 2 }}>
+                  <Button
+                    size="small"
+                    href={item.link}
+                    target="_blank"
+                    startIcon={<FaGithub />}
+                    variant="outlined"
+                    color="primary"
+                  >
+                    View Project
+                  </Button>
+                </CardActions>
+              </CardContent>
+            </Collapse>
+
+            <CardActions sx={{ mt: "auto", pt: 0, display: { xs: "none", md: "flex" }, justifyContent: "flex-start" }}>
               <Button
                 size="small"
                 href={item.link}

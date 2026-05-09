@@ -12,6 +12,7 @@ import {
   CardContent,
   CardActions,
 } from "@mui/material";
+import MonitorIcon from "@mui/icons-material/Monitor";
 import Carousel from "./Carousel";
 import adminDashboardImg from "../assets/projects/Admin_Dashboard.png";
 import cropAdvisorImg from "../assets/projects/Crop_Advisor.png";
@@ -127,11 +128,7 @@ const Projects = () => {
     setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  let carouselHeight;
-
-  if (isMdUp) {
-    carouselHeight = 670;
-  }
+  const carouselHeight = isMdUp ? 670 : 450;
 
   return (
     <Paper
@@ -158,113 +155,15 @@ const Projects = () => {
           My Projects
         </Typography>
       </motion.div>
-      {isMdUp ? (
-        <Box
-          sx={{
-            mt: 4,
-            maxWidth: { md: 800 },
-            mx: "auto",
-          }}
-        >
-          <Carousel items={projectsData} baseHeight={carouselHeight} />
-        </Box>
-      ) : (
-        <Box
-          sx={{
-            mt: 2,
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            maxWidth: 500,
-            mx: "auto",
-          }}
-        >
-          {projectsData.map((project, idx) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 + 0.2 }}
-              style={{ width: "100%" }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Card
-                  sx={{
-                    borderRadius: 4,
-                    boxShadow: 3,
-                    background:
-                      theme.palette.mode === "dark" ? "#232b3b" : "#f8fafc",
-                    border: (theme) =>
-                      `1.5px solid ${theme.palette.mode === "dark"
-                        ? theme.palette.primary.main
-                        : "#e0e7ef"
-                      }`,
-                    overflow: "hidden",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    image={project.image}
-                    alt={project.title}
-                    sx={{
-                      width: "100%",
-                      height: 140,
-                      objectFit: "contain",
-                      background: "#fff",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => handleExpand(project.id)}
-                  />
-                  <CardContent
-                    sx={{
-                      pb: 1,
-                      pt: 2,
-                      textAlign: "center",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => handleExpand(project.id)}
-                  >
-                    <Typography variant="h6" fontWeight={600} gutterBottom>
-                      {project.title}
-                    </Typography>
-                  </CardContent>
-                  <Collapse
-                    in={!!expanded[project.id]}
-                    timeout="auto"
-                    unmountOnExit
-                  >
-                    <CardContent sx={{ pt: 0, textAlign: "center" }}>
-                      <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        sx={{ mb: 2 }}
-                      >
-                        {project.description}
-                      </Typography>
-                      <CardActions sx={{ justifyContent: "center", pb: 2 }}>
-                        <Button
-                          size="small"
-                          href={project.link}
-                          target="_blank"
-                          startIcon={<FaGithub />}
-                          variant="outlined"
-                          color="primary"
-                        >
-                          View Project
-                        </Button>
-                      </CardActions>
-                    </CardContent>
-                  </Collapse>
-                </Card>
-              </motion.div>
-            </motion.div>
-          ))}
-        </Box>
-      )}
+      <Box
+        sx={{
+          mt: 4,
+          maxWidth: { xs: 500, md: 800 },
+          mx: "auto",
+        }}
+      >
+        <Carousel items={projectsData} baseHeight={carouselHeight} />
+      </Box>
     </Paper>
   );
 };

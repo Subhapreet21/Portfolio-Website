@@ -7,11 +7,13 @@ import {
   Paper,
   Alert,
   CircularProgress,
+  useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 
 const Contact = () => {
+  const theme = useTheme();
   const formRef = useRef();
   const [isSending, setIsSending] = useState(false);
   const [sendSuccess, setSendSuccess] = useState(false);
@@ -91,24 +93,45 @@ const Contact = () => {
             <input type="hidden" name="to_email" value="your@email.com" />
             <TextField
               label="Your Name"
-              variant="filled"
+              variant="outlined"
               name="from_name"
               required
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  background: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.6)",
+                  backdropFilter: "blur(10px)",
+                  borderRadius: 2,
+                }
+              }}
             />
             <TextField
               label="Your Email"
-              variant="filled"
+              variant="outlined"
               type="email"
               name="from_email"
               required
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  background: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.6)",
+                  backdropFilter: "blur(10px)",
+                  borderRadius: 2,
+                }
+              }}
             />
             <TextField
               label="Your Message"
-              variant="filled"
+              variant="outlined"
               name="message"
               required
               multiline
               rows={4}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  background: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.6)",
+                  backdropFilter: "blur(10px)",
+                  borderRadius: 2,
+                }
+              }}
             />
             <Box sx={{ position: "relative" }}>
               <motion.div

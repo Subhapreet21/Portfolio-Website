@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Sidebar from "./components/Sidebar";
 import Hero from "./components/Hero";
 import Skills from "./components/Skills";
+import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
@@ -14,11 +15,11 @@ import "./App.css";
 const getDesignTokens = (mode) => ({
   palette: {
     mode,
-    ...(mode === "light"
+        ...(mode === "light"
       ? {
-          primary: { main: "#06b6d4" },
-          secondary: { main: "#2dd4bf" },
-          background: { default: "#cefcff", paper: "#ffffff" },
+          primary: { main: "#0097a7" }, // Darker cyan for better contrast
+          secondary: { main: "#00bfa5" },
+          background: { default: "#e0f7fa", paper: "#ffffff" },
           text: { primary: "#0F172A", secondary: "#475569" },
         }
       : {
@@ -29,12 +30,26 @@ const getDesignTokens = (mode) => ({
         }),
   },
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    h1: { fontSize: "3.5rem", fontWeight: 700, letterSpacing: "-0.01562em" },
-    h2: { fontSize: "2.5rem", fontWeight: 600, letterSpacing: "-0.00833em" },
-    h3: { fontSize: "2rem", fontWeight: 600, letterSpacing: "0em" },
+    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+    h1: { fontFamily: '"Outfit", sans-serif', fontSize: "3.5rem", fontWeight: 800, letterSpacing: "-0.02em" },
+    h2: { fontFamily: '"Outfit", sans-serif', fontSize: "2.5rem", fontWeight: 700, letterSpacing: "-0.01em" },
+    h3: { fontFamily: '"Outfit", sans-serif', fontSize: "2rem", fontWeight: 700, letterSpacing: "0em" },
+    h4: { fontFamily: '"Outfit", sans-serif', fontWeight: 600 },
+    h5: { fontFamily: '"Outfit", sans-serif', fontWeight: 600 },
+    h6: { fontFamily: '"Outfit", sans-serif', fontWeight: 600 },
+    button: { fontFamily: '"Outfit", sans-serif', fontWeight: 600 },
   },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        html: {
+          scrollBehavior: "smooth",
+        },
+        body: {
+          transition: "background-color 0.3s ease-in-out, color 0.3s ease-in-out",
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
@@ -80,7 +95,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", overflowX: "hidden", minHeight: "100vh" }}>
         <Sidebar toggleTheme={toggleTheme} mode={mode} />
         <Box
           component="main"
@@ -88,6 +103,8 @@ function App() {
             flexGrow: 1,
             p: { xs: 2, sm: 3, md: 4 },
             pl: { sm: "96px" },
+            overflowX: "hidden",
+            width: "100%",
           }}
         >
           <div id="hero">
@@ -95,6 +112,9 @@ function App() {
           </div>
           <div id="skills">
             <Skills />
+          </div>
+          <div id="experience">
+            <Experience />
           </div>
           <div id="projects">
             <Projects />
@@ -105,9 +125,9 @@ function App() {
           <div id="contact">
             <Contact />
           </div>
+          <Footer />
         </Box>
       </Box>
-      <Footer />
     </ThemeProvider>
   );
 }

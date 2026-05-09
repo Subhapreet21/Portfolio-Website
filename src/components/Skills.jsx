@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography, Paper, Grid, Tooltip, useTheme } from "@mui/material";
+import CodeIcon from "@mui/icons-material/Code";
 import { motion } from "framer-motion";
 import {
   FaHtml5,
@@ -65,8 +66,19 @@ const Skills = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      sx={{ p: 4, my: 4, background: "transparent", border: "none" }}
+      sx={{ p: { xs: 2, md: 4 }, my: 2, background: "transparent", border: "none", position: "relative", overflow: "hidden" }}
     >
+      <CodeIcon
+        sx={{
+          position: "absolute",
+          right: -40,
+          top: -40,
+          fontSize: 250,
+          opacity: 0.03,
+          transform: "rotate(-15deg)",
+          zIndex: 0,
+        }}
+      />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -96,20 +108,23 @@ const Skills = () => {
                 style={{ width: "100%" }}
               >
                 <Paper
-                  elevation={4}
+                  elevation={0}
                   sx={{
-                    p: { xs: 1, sm: 3 },
+                    p: { xs: 1.5, sm: 2.5 },
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
-                    width: { xs: 80, sm: 120 },
-                    height: { xs: 80, sm: 120 },
+                    aspectRatio: "1 / 1",
+                    width: "100%",
+                    maxWidth: { xs: 90, sm: 120 },
+                    mx: "auto",
                     color: skill.color,
-                    backgroundColor:
-                      theme.palette.mode === "dark"
-                        ? "#f8fafc"
-                        : "background.paper",
+                    background: theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.6)",
+                    backdropFilter: "blur(10px)",
+                    border: `1px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.8)"}`,
+                    borderRadius: 4,
+                    boxShadow: "0 8px 32px rgba(0,0,0,0.05)",
                   }}
                 >
                   {skill.icon}
