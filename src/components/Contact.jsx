@@ -90,6 +90,7 @@ const Contact = () => {
             onSubmit={handleSubmit}
             style={{ display: "flex", flexDirection: "column", gap: "inherit" }}
           >
+            <input type="hidden" name="year" value={new Date().getFullYear()} />
             <input type="hidden" name="to_email" value="your@email.com" />
             <TextField
               label="Your Name"
