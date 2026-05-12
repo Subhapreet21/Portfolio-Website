@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tech Stack 3D Baker</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f9f9f9;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        button {
+            margin-top: 15px;
+            font-size: 16px;
+            padding: 12px 24px;
+            cursor: pointer;
+            background: #02569B;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        #status {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .log-list {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+            max-height: 200px;
+            overflow-y: auto;
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Tech Stack 3D Baker</h2>
+        <p>Type the names of the tech icons you want (comma-separated). Uses the official Simple-Icons library.</p>
+
+        <textarea id="iconList" placeholder="e.g. react, python, mongodb, postgresql, javascript, docker"></textarea>
+        <div class="note">Use the exact slug from <a href="https://simpleicons.org/" target="_blank">simpleicons.org</a>
+        </div>
+
+        <button id="processBtn">Fetch & Download 3D Models</button>
+
+        <div id="status">Ready.</div>
+        <div id="log" class="log-list">Logs will appear here...</div>
+    </div>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
+        import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
+
+        const processBtn = document.getElementById('processBtn');
+        const iconListInput = document.getElementById('iconList');
+        const statusDiv = document.getElementById('status');
+        const logDiv = document.getElementById('log');
+
+        function logMessage(msg) {
+            const p = document.createElement('div');
+            p.innerText = msg;
+            logDiv.appendChild(p);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function processSingleIcon(slug) {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    // 1. THE BRUTE FORCE METHOD: Fetch the raw file as plain text from version 10
+                    // jsDelivr ALWAYS allows plain text fetching (Zero CORS issues).
+                    const response = await fetch(`https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/${slug}.js`);
+                    if (!response.ok) throw new Error(`Could not find icon data for '${slug}'. Check simpleicons.org.`);
+                    const jsText = await response.text();
+
+                    // 2. Pluck the color and path directly out of the text using Regex. 
+                    // This bypasses all strict module/import errors.
+                    const hexMatch = jsText.match(/hex\s*:\s*["']([^"']+)["']/i);
+                    const pathMatch = jsText.match(/path\s*:\s*["']([^"']+)["']/i);
+
+                    if (!hexMatch || !pathMatch) {
+                        throw new Error(`Found '${slug}' but failed to extract color/path data.`);
+                    }
+
+                    const hexColor = `#${hexMatch[1]}`;
+                    const svgPath = pathMatch[1];
+
+                    // 3. Assemble a perfectly clean SVG text string in memory
+                    const svgText = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="${hexColor}" d="${svgPath}"/></svg>`;
+
+                    // 4. Parse the SVG text into Three.js
+                    const scene = new THREE.Scene();
+                    const loader = new SVGLoader();
+                    const data = loader.parse(svgText);
+
+                    const group = new THREE.Group();
+                    group.scale.y *= -1;
+
+                    for (const path of data.paths) {
+                        // 5. Apply the freshly extracted brand color
+                        const material = new THREE.MeshStandardMaterial({
+                            color: hexColor,
+                            side: THREE.DoubleSide,
+                            roughness: 0.2,
+                            metalness: 0.1
+                        });
+
+                        const shapes = SVGLoader.createShapes(path);
+
+                        for (const shape of shapes) {
+                            const geometry = new THREE.ExtrudeGeometry(shape, {
+                                depth: 2,
+                                bevelEnabled: false
+                            });
+                            geometry.center();
+                            const mesh = new THREE.Mesh(geometry, material);
+                            group.add(mesh);
+                        }
+                    }
+
+                    scene.add(group);
+
+                    // 6. Export to GLB
+                    const exporter = new GLTFExporter();
+                    exporter.parse(
+                        scene,
+                        function (gltf) {
+                            const blob = new Blob([gltf], { type: 'application/octet-stream' });
+                            const downloadUrl = URL.createObjectURL(blob);
+                            const link = document.createElement('a');
+                            link.style.display = 'none';
+                            link.href = downloadUrl;
+                            link.download = `${slug}_colored_3d.glb`;
+
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                            URL.revokeObjectURL(downloadUrl);
+                            resolve();
+                        },
+                        function (error) { reject(new Error("Failed during 3D Export phase.")); },
+                        { binary: true }
+                    );
+                } catch (error) {
+                    reject(error);
+                }
+            });
+        }
+
+        processBtn.addEventListener('click', async () => {
+            const rawText = iconListInput.value;
+            if (!rawText.trim()) return alert("Please enter at least one icon name.");
+
+            const slugs = rawText.split(',').map(s => s.trim().toLowerCase().replace(/\s+/g, '')).filter(s => s);
+
+            processBtn.disabled = true;
+            logDiv.innerHTML = '';
+            statusDiv.innerText = `Processing ${slugs.length} icons...`;
+
+            for (let i = 0; i < slugs.length; i++) {
+                const slug = slugs[i];
+                logMessage(`[${i + 1}/${slugs.length}] Fetching ${slug}...`);
+
+                try {
+                    await processSingleIcon(slug);
+                    logMessage(`✅ Successfully baked ${slug}_colored_3d.glb`);
+                    await new Promise(r => setTimeout(r, 500));
+                } catch (err) {
+                    // This will now print the EXACT error instead of a generic message
+                    logMessage(`❌ Failed on ${slug}: ${err.message}`);
+                    console.error(err);
+                }
+            }
+
+            statusDiv.innerText = "All operations complete!";
+            processBtn.disabled = false;
+        });
+    </script>
+</body>
+
+</html>
