@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { Box, Typography, Paper, Tooltip, useTheme } from "@mui/material";
+import React, { useRef, useState, memo } from "react";
+import { Box, Typography, Paper, Tooltip } from "@mui/material";
 import CodeIcon from "@mui/icons-material/Code";
 import { motion } from "framer-motion";
 import { SkillCoinView, SkillsGlobalCanvas } from "./SkillChip";
@@ -36,7 +36,7 @@ const skills = [
   { name: "Salesforce", svg: "Salesforce.svg" },
 ];
 
-const CoinTile = ({ skill, idx, isDark }) => {
+const CoinTile = memo(({ skill, idx }) => {
   const trackRef = useRef();
   const [isHovered, setIsHovered] = useState(false);
   const [pointer, setPointer] = useState({ x: 0, y: 0 });
@@ -70,9 +70,10 @@ const CoinTile = ({ skill, idx, isDark }) => {
           sx={{
             width: { xs: 90, sm: 120 },
             height: { xs: 90, sm: 120 },
-            borderRadius: "50%", // Circular for coins
-            background: isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.03)",
-            border: `1px solid ${isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)"}`,
+            borderRadius: "50%",
+            // Colors come from CSS vars set in App.jsx — no React re-render needed on theme change
+            background: "var(--coin-bg)",
+            border: "1px solid var(--coin-border)",
             position: "relative",
             cursor: "pointer",
           }}
@@ -89,12 +90,9 @@ const CoinTile = ({ skill, idx, isDark }) => {
       </motion.div>
     </Tooltip>
   );
-};
+});
 
 const Skills = () => {
-  const theme = useTheme();
-  const isDark = theme.palette.mode === "dark";
-
   return (
     <Paper
       component={motion.create("section")}
@@ -156,7 +154,7 @@ const Skills = () => {
               justifyContent: "center",
             }}
           >
-            <CoinTile skill={skill} idx={idx} isDark={isDark} />
+            <CoinTile skill={skill} idx={idx} />
           </Box>
         ))}
       </Box>

@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useState, useEffect, useMemo } from "react";
+import React, { Suspense, useRef, useState, useEffect, useMemo, memo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
   useGLTF,
@@ -324,25 +324,36 @@ const CoinScene = ({ svgUrl, interactive, pointer }) => {
   );
 };
 
-export const SkillCoinView = ({ trackRef, svgUrl, interactive, pointer }) => (
-  <View
-    track={trackRef}
-    style={{
-      width: "100%",
-      height: "100%",
-      position: "absolute",
-      top: 0,
-      left: 0,
-    }}
-  >
-    <CoinScene svgUrl={svgUrl} interactive={interactive} pointer={pointer} />
-  </View>
+// Memo with a custom comparator: compare pointer x/y by VALUE, not by reference.
+// This prevents all 20 Three.js views from re-rendering when the parent re-renders
+// due to a theme toggle (where pointer is always {x:0, y:0} — same values, new object).
+export const SkillCoinView = memo(
+  ({ trackRef, svgUrl, interactive, pointer }) => (
+    <View
+      track={trackRef}
+      style={{
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        top: 0,
+        left: 0,
+      }}
+    >
+      <CoinScene svgUrl={svgUrl} interactive={interactive} pointer={pointer} />
+    </View>
+  ),
+  (prev, next) =>
+    prev.svgUrl === next.svgUrl &&
+    prev.interactive === next.interactive &&
+    prev.pointer.x === next.pointer.x &&
+    prev.pointer.y === next.pointer.y,
 );
 
 export const SkillsGlobalCanvas = () => (
   <Canvas
-    dpr={[1, 2]}
+    dpr={[1, 1.5]}
     gl={{ antialias: true, alpha: true }}
+    performance={{ min: 0.5 }}
     style={{
       position: "fixed",
       top: 0,

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect, useTransition } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
@@ -86,11 +86,48 @@ const getDesignTokens = (mode) => ({
 
 function App() {
   const [mode, setMode] = useState("light");
+  const [showLoader, setShowLoader] = useState(true);
+  const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLoader(false);
+    }, 3500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Sync theme-sensitive coin colors as CSS vars so CoinTile
+  // never needs to re-render due to isDark prop changes.
+  // CSS var updates are handled entirely by the browser's style engine — no React, no WebGL interruption.
+  useEffect(() => {
+    const root = document.documentElement;
+    if (mode === "dark") {
+      root.style.setProperty("--coin-bg", "rgba(255,255,255,0.03)");
+      root.style.setProperty("--coin-border", "rgba(255,255,255,0.05)");
+    } else {
+      root.style.setProperty("--coin-bg", "rgba(0,0,0,0.03)");
+      root.style.setProperty("--coin-border", "rgba(0,0,0,0.05)");
+    }
+  }, [mode]);
+
+  // useMemo must be called unconditionally, before any early returns
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   const toggleTheme = () => {
-    setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+    // startTransition marks this as a non-urgent update.
+    // React will defer the expensive 3D re-renders and keep the UI responsive.
+    startTransition(() => {
+      setMode((prev) => (prev === "light" ? "dark" : "light"));
+    });
   };
+
+  if (showLoader) {
+    return (
+      <div className="initial-loader-container">
+        <span className="loader"></span>
+      </div>
+    );
+  }
 
   return (
     <ThemeProvider theme={theme}>
