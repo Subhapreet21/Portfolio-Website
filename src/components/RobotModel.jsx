@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, forwardRef, useImperativeHandle } from "react";
+import { useCallback, useEffect, useRef, useState, forwardRef, useImperativeHandle, memo } from "react";
 import Spline from "@splinetool/react-spline";
 import { motion } from "framer-motion";
 
@@ -64,7 +64,7 @@ const WRAPPER_VARIANTS = {
   },
 };
 
-const RobotModel = forwardRef(({ mood = "idle", style }, ref) => {
+const RobotModel = memo(forwardRef(({ mood = "idle", style }, ref) => {
   const containerRef = useRef(null);
   const splineAppRef = useRef(null);
   const prevMoodRef = useRef(mood);
@@ -106,12 +106,18 @@ const RobotModel = forwardRef(({ mood = "idle", style }, ref) => {
     }
   }, []);
 
+  const getZoomForWidth = useCallback((width) => {
+    // Lower zoom = more zoomed out = more room for the jump arc above the robot.
+    // Higher zoom = robot fills more of the frame but risks the jump being clipped.
+    if (width < 480) return 0.30;   // xs: small phones — show full jump with room to spare
+    if (width < 900) return 0.38;   // sm/md tablet range
+    return 0.52;                    // desktop: larger canvas so a bigger zoom looks great
+  }, []);
+
   const handleLoad = useCallback(
     (splineApp) => {
       splineAppRef.current = splineApp;
       splineApp.setGlobalEvents(true);
-
-
 
       if (splineApp.controls) {
         splineApp.controls.enableZoom = false;
@@ -121,28 +127,15 @@ const RobotModel = forwardRef(({ mood = "idle", style }, ref) => {
         splineApp.controls.enablePan = false;
       }
 
-      const isMobile = window.innerWidth < 768;
-      splineApp.setZoom(isMobile ? 0.18 : 0.50);
+      splineApp.setZoom(getZoomForWidth(window.innerWidth));
       emitToRobot("start");
     },
-    [emitToRobot],
+    [emitToRobot, getZoomForWidth],
   );
 
   useEffect(() => {
     const app = splineAppRef.current;
     if (!app) return;
-
-    // Only reverse the animation if we JUST transitioned out of a jump state.
-    // This prevents the reversal logic from accidentally triggering a jump on initial page load.
-    const wasJumping = prevMoodRef.current === "sending" || prevMoodRef.current === "error";
-    const isJumping = mood === "sending" || mood === "error";
-
-    if (wasJumping && !isJumping) {
-      if (typeof app.emitEventReverse === "function") {
-        app.emitEventReverse("keyDown", TARGET_OBJECT);
-        app.emitEventReverse("keyDown");
-      }
-    }
 
     emitToRobot(MOOD_TO_EVENT[mood]);
     prevMoodRef.current = mood;
@@ -151,13 +144,12 @@ const RobotModel = forwardRef(({ mood = "idle", style }, ref) => {
   useEffect(() => {
     const handleResize = () => {
       if (splineAppRef.current) {
-        const isMobile = window.innerWidth < 768;
-        splineAppRef.current.setZoom(isMobile ? 0.38 : 0.55);
+        splineAppRef.current.setZoom(getZoomForWidth(window.innerWidth));
       }
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [getZoomForWidth]);
 
   useEffect(() => {
     const element = containerRef.current;
@@ -260,6 +252,6 @@ const RobotModel = forwardRef(({ mood = "idle", style }, ref) => {
       />
     </MotionDiv>
   );
-});
+}), (prevProps, nextProps) => prevProps.mood === nextProps.mood);
 
 export default RobotModel;

@@ -1,8 +1,14 @@
-import React, { useRef, useState, memo } from "react";
+import React, { useRef, useState, memo, useMemo } from "react";
 import { Box, Typography, Paper, Tooltip } from "@mui/material";
 import CodeIcon from "@mui/icons-material/Code";
 import { motion } from "framer-motion";
 import { SkillCoinView, SkillsGlobalCanvas } from "./SkillChip";
+
+// Hoisted outside component: motion.create() must NOT be called inside a render
+// function because it creates a new React component type on every call, causing
+// React to unmount+remount the entire Paper subtree (including the WebGL canvas)
+// on every theme toggle or parent re-render.
+const MotionSection = motion.create("section");
 
 // Bulk-import SVG files as resolved URLs at build time
 const svgModules = import.meta.glob("../assets/Tech Stack Assets/*.svg", {
@@ -52,6 +58,8 @@ const CoinTile = memo(({ skill, idx }) => {
   return (
     <Tooltip title={skill.name} placement="top" arrow>
       <motion.div
+        role="img"
+        aria-label={skill.name}
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, amount: 0.4 }}
@@ -71,11 +79,15 @@ const CoinTile = memo(({ skill, idx }) => {
             width: { xs: 90, sm: 120 },
             height: { xs: 90, sm: 120 },
             borderRadius: "50%",
-            // Colors come from CSS vars set in App.jsx — no React re-render needed on theme change
+            // Colors come from CSS vars set in App.jsx — no React re-render needed on theme change.
+            // The transition ensures the coin container background matches the 0.3s body background
+            // color transition, so coins don't snap while the rest of the page fades.
             background: "var(--coin-bg)",
             border: "1px solid var(--coin-border)",
+            transition: "background 0.3s ease-in-out, border-color 0.3s ease-in-out",
             position: "relative",
-            cursor: "pointer",
+            cursor: "grab",
+            "&:active": { cursor: "grabbing" },
           }}
         >
           {svgUrl && (
@@ -92,10 +104,15 @@ const CoinTile = memo(({ skill, idx }) => {
   );
 });
 
-const Skills = () => {
+// Memo prevents Skills from re-rendering when App's mode state changes.
+// Skills receives no props, so it never needs to re-render after initial mount.
+// MUI sx styles are driven by the ThemeProvider context (emotion regenerates CSS
+// in the style sheet) and CSS variables, so they update correctly without a React
+// re-render of this component.
+const Skills = memo(() => {
   return (
     <Paper
-      component={motion.create("section")}
+      component={MotionSection}
       elevation={0}
       sx={{
         p: { xs: 2, md: 4 },
@@ -160,6 +177,6 @@ const Skills = () => {
       </Box>
     </Paper>
   );
-};
+});
 
 export default Skills;

@@ -1,5 +1,5 @@
 import React, { Suspense, useRef, useState, useEffect, useMemo, memo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   useGLTF,
   View,
@@ -126,7 +126,7 @@ function useSvgTexture(svgUrl) {
       try {
         tex.colorSpace = THREE.SRGBColorSpace;
       } catch {
-        tex.encoding = THREE.sRGBEncoding;
+        tex.encoding = 3001;
       }
       tex.flipY = true;
       tex.generateMipmaps = true;
@@ -160,7 +160,53 @@ const CoinModel = ({
   const { scene } = useGLTF(coinGlbUrl);
   const texture = useSvgTexture(svgUrl);
   const groupRef = useRef(null);
-  const spinRef = useRef(0);
+
+  const { invalidate } = useThree();
+  const isDragging = useRef(false);
+  const initialPointer = useRef({ x: 0, y: 0 });
+  const initialRotation = useRef({ x: 0, y: 0 });
+
+  const handlePointerDown = (e) => {
+    e.stopPropagation();
+    try {
+      e.target.setPointerCapture(e.pointerId);
+    } catch (err) {}
+    isDragging.current = true;
+    initialPointer.current = { x: e.pointer.x, y: e.pointer.y };
+    initialRotation.current = {
+      x: groupRef.current.rotation.x,
+      y: groupRef.current.rotation.y,
+    };
+    invalidate();
+  };
+
+  const handlePointerMove = (e) => {
+    if (!isDragging.current) return;
+    e.stopPropagation();
+    const deltaX = e.pointer.x - initialPointer.current.x;
+    const deltaY = e.pointer.y - initialPointer.current.y;
+    groupRef.current.rotation.y = initialRotation.current.y + deltaX * Math.PI * 1.5;
+    groupRef.current.rotation.x = initialRotation.current.x - deltaY * Math.PI * 1.5;
+    invalidate();
+  };
+
+  const handlePointerUp = (e) => {
+    e.stopPropagation();
+    try {
+      e.target.releasePointerCapture(e.pointerId);
+    } catch (err) {}
+    isDragging.current = false;
+    invalidate();
+  };
+
+  const handlePointerLeave = (e) => {
+    isDragging.current = false;
+    invalidate();
+  };
+
+  useEffect(() => {
+    invalidate();
+  }, [pointer.x, pointer.y, interactive, texture, invalidate]);
 
   const { normalizedScene, logoZOffsetFront, logoZOffsetBack } = useMemo(() => {
     // If we've prepared the model once, reuse the prepared values and clone the scene.
@@ -219,27 +265,42 @@ const CoinModel = ({
     };
   }, [scene]);
 
-  useFrame((_, delta) => {
+  useFrame(() => {
     if (!groupRef.current) return;
 
-    const tiltX = (interactive ? pointer.y : 0) * 0.22;
-    const tiltY = (interactive ? pointer.x : 0) * 0.28;
-    spinRef.current += delta * 2.0;
+    if (isDragging.current) {
+      return;
+    }
 
-    groupRef.current.rotation.x = THREE.MathUtils.lerp(
-      groupRef.current.rotation.x,
-      tiltX,
-      0.14,
-    );
-    groupRef.current.rotation.y = THREE.MathUtils.lerp(
-      groupRef.current.rotation.y,
-      spinRef.current + tiltY,
-      0.12,
-    );
+    const targetX = (interactive ? pointer.y : 0) * 0.22;
+    const targetY = (interactive ? pointer.x : 0) * 0.28;
+
+    const currentX = groupRef.current.rotation.x;
+    const currentY = groupRef.current.rotation.y;
+
+    const nextX = THREE.MathUtils.lerp(currentX, targetX, 0.10);
+    const nextY = THREE.MathUtils.lerp(currentY, targetY, 0.08);
+
+    groupRef.current.rotation.x = nextX;
+    groupRef.current.rotation.y = nextY;
+
+    const diffX = Math.abs(nextX - targetX);
+    const diffY = Math.abs(nextY - targetY);
+
+    if (diffX > 0.0001 || diffY > 0.0001) {
+      invalidate();
+    }
   });
 
   return (
-    <group ref={groupRef} rotation={[0, 0, 0]}>
+    <group
+      ref={groupRef}
+      rotation={[0, 0, 0]}
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+    >
       {/* Use normalized scene transform for stable centering across all chips */}
       <primitive object={normalizedScene} />
 
@@ -349,8 +410,27 @@ export const SkillCoinView = memo(
     prev.pointer.y === next.pointer.y,
 );
 
-export const SkillsGlobalCanvas = () => (
+// Listens for window scroll events and requests exactly one new render frame
+// so that View.Port can re-read all tracking element positions after scrolling.
+// Without this, frameloop="demand" would leave badges frozen at stale positions.
+const ScrollInvalidator = () => {
+  const { invalidate } = useThree();
+
+  useEffect(() => {
+    const handleScroll = () => invalidate();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [invalidate]);
+
+  return null;
+};
+
+// memo prevents the global Canvas from ever re-rendering after initial mount.
+// Since it takes no props, it will never re-render unless explicitly unmounted,
+// which means the WebGL context is never disturbed during theme toggles.
+export const SkillsGlobalCanvas = memo(() => (
   <Canvas
+    frameloop="demand"
     dpr={[1, 1.5]}
     gl={{ antialias: true, alpha: true }}
     performance={{ min: 0.5 }}
@@ -365,10 +445,11 @@ export const SkillsGlobalCanvas = () => (
     }}
     eventSource={typeof document !== "undefined" ? document.body : undefined}
   >
+    <ScrollInvalidator />
     <View.Port />
     <Preload all />
   </Canvas>
-);
+));
 
 function SkillChipFallback() {
   return null;

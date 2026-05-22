@@ -13,22 +13,22 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import { motion } from "framer-motion";
 
 // Certificate images
-import spokenEnglishImg from "../assets/certificates/Spoken English.jpg";
-import smartEnglishImg from "../assets/certificates/Smart English Basics for Professionals.jpg";
-import pythonEssentialsImg from "../assets/certificates/Python Programming Essentials.jpg";
-import pythonBasicImg from "../assets/certificates/Python Basic Structures.jpg";
-import introPythonImg from "../assets/certificates/Introduction to Python Programming.jpg";
-import introJavaImg from "../assets/certificates/Introduction to Java.jpg";
-import introGenAIImg from "../assets/certificates/Introduction to Generative AI.jpg";
-import foundationsDataImg from "../assets/certificates/Foundations of data analytics.jpg";
-import deepLearningImg from "../assets/certificates/Deep Learning.jpg";
-import deloitteImg from "../assets/certificates/Deloitte Australia - Data Analytics Job Simulation.jpg";
-import accentureImg from "../assets/certificates/Accenture Nordics - Software Engineering Job Simulation.jpg";
-import githubFoundations from "../assets/certificates/Github_Foundations_Part1of2.png";
-import githubFundamentals from "../assets/certificates/GitHub fundamentals-Administration_basics_and_product_features_Part1of2.png";
-import edunetImg from "../assets/certificates/Edunet-Artificial Intelligence.png";
-import edunetInternshipImg from "../assets/certificates/AICTE B4 PD Completion-1040.png";
-import agentforceCertificateImg from "../assets/certificates/Salesforce Certified Agentforce Specialist.jpg";
+import spokenEnglishImg from "../assets/certificates/Spoken English.webp";
+import smartEnglishImg from "../assets/certificates/Smart English Basics for Professionals.webp";
+import pythonEssentialsImg from "../assets/certificates/Python Programming Essentials.webp";
+import pythonBasicImg from "../assets/certificates/Python Basic Structures.webp";
+import introPythonImg from "../assets/certificates/Introduction to Python Programming.webp";
+import introJavaImg from "../assets/certificates/Introduction to Java.webp";
+import introGenAIImg from "../assets/certificates/Introduction to Generative AI.webp";
+import foundationsDataImg from "../assets/certificates/Foundations of data analytics.webp";
+import deepLearningImg from "../assets/certificates/Deep Learning.webp";
+import deloitteImg from "../assets/certificates/Deloitte Australia - Data Analytics Job Simulation.webp";
+import accentureImg from "../assets/certificates/Accenture Nordics - Software Engineering Job Simulation.webp";
+import githubFoundations from "../assets/certificates/Github_Foundations_Part1of2.webp";
+import githubFundamentals from "../assets/certificates/GitHub fundamentals-Administration_basics_and_product_features_Part1of2.webp";
+import edunetImg from "../assets/certificates/Edunet-Artificial Intelligence.webp";
+import edunetInternshipImg from "../assets/certificates/AICTE B4 PD Completion-1040.webp";
+import agentforceCertificateImg from "../assets/certificates/Salesforce Certified Agentforce Specialist.webp";
 // Certificate PDFs
 import spokenEnglishPdf from "../assets/certificates/Spoken English.pdf";
 import smartEnglishPdf from "../assets/certificates/Smart English Basics for Professionals.pdf";
@@ -271,6 +271,7 @@ const Certifications = () => {
         >
           <Typography
             variant="h5"
+            component="h3"
             fontWeight={700}
             gutterBottom
             sx={{ textAlign: { xs: "center", sm: "left" }, fontSize: { xs: '1.1rem', sm: '1.3rem' } }}
@@ -279,6 +280,7 @@ const Certifications = () => {
           </Typography>
           <Typography
             variant="subtitle1"
+            component="p"
             color="primary.main"
             fontWeight={600}
             sx={{ textAlign: { xs: "center", sm: "left" }, mb: 1 }}
@@ -320,7 +322,7 @@ const Certifications = () => {
           <Typography variant="h2" fontWeight={800} gutterBottom>
             Certifications
           </Typography>
-          <Typography variant="subtitle1" color="text.secondary">
+          <Typography variant="subtitle1" component="p" color="text.secondary">
             A collection of my professional achievements and skill validations.
           </Typography>
         </motion.div>

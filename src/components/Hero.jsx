@@ -7,10 +7,13 @@ import {
   IconButton,
   useTheme,
 } from "@mui/material";
-import { GitHub, LinkedIn, Instagram, X } from "@mui/icons-material";
-import { MdDownload } from "react-icons/md";
-import { LuMessageSquareText } from "react-icons/lu";
-import profileImage from "../assets/Profile_picture.png";
+import GitHub from "@mui/icons-material/GitHub";
+import LinkedIn from "@mui/icons-material/LinkedIn";
+import Instagram from "@mui/icons-material/Instagram";
+import X from "@mui/icons-material/X";
+import DownloadIcon from "@mui/icons-material/Download";
+import ChatIcon from "@mui/icons-material/Chat";
+import profileImage from "../assets/Profile_picture.webp";
 import resumePdf from "../assets/Resume-SUBHAPREET_PATRO (1).pdf";
 import { motion } from "framer-motion";
 
@@ -104,6 +107,8 @@ const Hero = () => {
               component="img"
               src={profileImage}
               alt="Profile"
+              fetchPriority="high"
+              loading="eager"
               sx={{
                 width: "100%",
                 height: "100%",
@@ -193,7 +198,7 @@ const Hero = () => {
                 href={resumePdf}
                 download
                 endIcon={
-                  <MdDownload size={22} style={{ verticalAlign: "middle" }} />
+                  <DownloadIcon style={{ fontSize: 22, verticalAlign: "middle" }} />
                 }
                 sx={{
                   fontWeight: 700,
@@ -226,9 +231,8 @@ const Hero = () => {
                 color="primary"
                 onClick={handleContactClick}
                 endIcon={
-                  <LuMessageSquareText
-                    size={22}
-                    style={{ verticalAlign: "middle" }}
+                  <ChatIcon
+                    style={{ fontSize: 22, verticalAlign: "middle" }}
                   />
                 }
                 sx={{
@@ -438,6 +442,8 @@ const Hero = () => {
               component="img"
               src={profileImage}
               alt="Profile"
+              fetchPriority="high"
+              loading="eager"
               sx={{
                 width: "100%",
                 height: "100%",

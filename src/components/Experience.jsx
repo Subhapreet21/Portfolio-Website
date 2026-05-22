@@ -184,6 +184,7 @@ const Experience = () => {
                 <Box sx={{ position: "relative", zIndex: 1 }}>
                   <Typography
                     variant="h5"
+                    component="h3"
                     fontWeight={800}
                     color="primary.main"
                     gutterBottom
@@ -223,6 +224,7 @@ const Experience = () => {
                     )}
                     <Typography
                       variant="h6"
+                      component="h4"
                       fontWeight={600}
                       sx={{
                         opacity: 0.9,

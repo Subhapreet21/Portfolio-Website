@@ -11,7 +11,7 @@ import {
   Collapse,
 } from "@mui/material";
 import MonitorIcon from "@mui/icons-material/Monitor";
-import { FaGithub } from "react-icons/fa";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 const DRAG_BUFFER = 10;
 const VELOCITY_THRESHOLD = 500;
@@ -213,7 +213,7 @@ export default function Carousel({
                     size="small"
                     href={item.link}
                     target="_blank"
-                    startIcon={<FaGithub />}
+                    startIcon={<GitHubIcon />}
                     variant="outlined"
                     color="primary"
                   >
@@ -228,7 +228,7 @@ export default function Carousel({
                 size="small"
                 href={item.link}
                 target="_blank"
-                startIcon={<FaGithub />}
+                startIcon={<GitHubIcon />}
               >
                 View Project
               </Button>

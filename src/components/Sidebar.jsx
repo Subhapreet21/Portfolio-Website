@@ -1,16 +1,13 @@
 import React from "react";
 import { Box, Drawer, IconButton, Tooltip, Divider } from "@mui/material";
-import {
-  Home,
-  Code,
-  BusinessCenter,
-  Star,
-  Mail,
-  Brightness4,
-  Brightness7,
-  Work,
-  Monitor,
-} from "@mui/icons-material";
+import Home from "@mui/icons-material/Home";
+import Code from "@mui/icons-material/Code";
+import Star from "@mui/icons-material/Star";
+import Mail from "@mui/icons-material/Mail";
+import Brightness4 from "@mui/icons-material/Brightness4";
+import Brightness7 from "@mui/icons-material/Brightness7";
+import Work from "@mui/icons-material/Work";
+import Monitor from "@mui/icons-material/Monitor";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";

@@ -65,6 +65,8 @@ const CONTACT_INFO = [
   },
 ];
 
+const ROBOT_STYLE = { minHeight: "100%" };
+
 const Contact = () => {
   const theme = useTheme();
   const isDark = theme.palette.mode === "dark";
@@ -135,6 +137,23 @@ const Contact = () => {
     setSendError(false);
     setIsTyping(false);
 
+    // The robot's frontflip animation takes ~2.4s to play fully in Spline.
+    // We guarantee the "sending" mood lasts at least this long regardless of
+    // how fast EmailJS responds, so the frontflip is never cut short.
+    const FRONTFLIP_DURATION_MS = 2400;
+    const sendStart = Date.now();
+
+    const transitionAfterFrontflip = (applyOutcome) => {
+      const elapsed = Date.now() - sendStart;
+      const remaining = Math.max(0, FRONTFLIP_DURATION_MS - elapsed);
+      // Both calls inside the same setTimeout are auto-batched by React 18,
+      // producing exactly ONE re-render and ONE mood transition.
+      setTimeout(() => {
+        setIsSending(false);
+        applyOutcome();
+      }, remaining);
+    };
+
     emailjs
       .sendForm(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
@@ -145,15 +164,14 @@ const Contact = () => {
       .then(
         (result) => {
           console.log("SUCCESS!", result.text);
-          setSendSuccess(true);
           formRef.current.reset();
+          transitionAfterFrontflip(() => setSendSuccess(true));
         },
         (error) => {
           console.log("FAILED…", error.text);
-          setSendError(true);
+          transitionAfterFrontflip(() => setSendError(true));
         },
-      )
-      .finally(() => setIsSending(false));
+      );
   };
 
   const fieldSx = {
@@ -230,7 +248,9 @@ const Contact = () => {
             onMouseLeave={() => setIsRobotHovered(false)}
             sx={{
               width: "100%",
-              height: { xs: 320, md: "100%" },
+              // Taller container on small screens so the robot's jump animation
+              // has enough vertical space to play out without being clipped.
+              height: { xs: 500, sm: 460, md: "100%" },
               borderRadius: 4,
               overflow: "hidden",
               backdropFilter: "blur(12px)",
@@ -287,7 +307,7 @@ const Contact = () => {
                   },
                 }}
               >
-                <RobotModel ref={robotRef} mood={robotMood} style={{ minHeight: "100%" }} />
+                <RobotModel ref={robotRef} mood={robotMood} style={ROBOT_STYLE} />
               </Box>
 
               {/* React UI Overlays for Controls */}
